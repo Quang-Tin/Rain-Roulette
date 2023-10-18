@@ -7,7 +7,8 @@ export default class MainScene extends Phaser.Scene {
 
   editorCreate(): void {
     const logo = this.add
-      .image(Number(this.game.config.width) / 2, 0, "logo")
+      .image(Number(this.game.config.width) / 2 - 89 /2 , (21 / Number(this.game.config.height)) * Number(this.game.config.height), "logo")
+	  .setOrigin(0)
       .setDisplaySize(
         (89 / Number(this.game.config.width)) * Number(this.game.config.width),
         (58 / Number(this.game.config.height)) * Number(this.game.config.height)
@@ -89,6 +90,7 @@ export default class MainScene extends Phaser.Scene {
           Number(this.game.config.height),
         "info"
       )
+      .setInteractive()
       .setOrigin(0)
       .setDisplaySize(
         (22 / Number(this.game.config.width)) * Number(this.game.config.width),
@@ -108,19 +110,116 @@ export default class MainScene extends Phaser.Scene {
         (68 / Number(this.game.config.height)) * Number(this.game.config.height)
       );
 
-    const candyBlance = this.add
-      .text(
-		(272 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (243 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "0",
-		{
-			fontSize: 18 / Number(this.game.config.width) * Number(this.game.config.width)
-		}
-      )
-      
+    const candyBlance = this.add.text(
+      (272 / Number(this.game.config.width)) * Number(this.game.config.width),
+      (243 / Number(this.game.config.height)) * Number(this.game.config.height),
+      "0",
+      {
+        fontSize:
+          (18 / Number(this.game.config.width)) *
+          Number(this.game.config.width),
+      }
+    );
+
+    info.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+      this.showGuideDialog();
+    });
 
     this.events.emit("scene-awake");
+  }
+
+  showGuideDialog() {
+    this.add
+      .rectangle(0, 0)
+      .setFillStyle(0x000000, 0.5)
+      .setOrigin(0)
+      .setSize(Number(this.game.config.width), Number(this.game.config.height));
+
+    this.add
+      .graphics()
+      .fillStyle(0x2c2937, 1)
+      .fillRoundedRect(
+        (32 / Number(this.game.config.width)) * Number(this.game.config.width),
+        (284 / Number(this.game.config.height)) *
+          Number(this.game.config.height),
+        (325 / Number(this.game.config.width)) * Number(this.game.config.width),
+        (276 / Number(this.game.config.height)) *
+          Number(this.game.config.height),
+        10
+      );
+
+    this.add
+      .graphics()
+      .fillStyle(0x23212b, 1)
+      .fillRoundedRect(
+        (32 / Number(this.game.config.width)) * Number(this.game.config.width),
+        (284 / Number(this.game.config.height)) *
+          Number(this.game.config.height),
+        (325 / Number(this.game.config.width)) * Number(this.game.config.width),
+        (50 / Number(this.game.config.height)) *
+          Number(this.game.config.height),
+        { tl: 10, tr: 10, bl: 0, br: 0 }
+      );
+
+    this.add
+      .image(
+        (327 / Number(this.game.config.width)) * Number(this.game.config.width),
+        (304 / Number(this.game.config.height)) *
+          Number(this.game.config.height),
+        "CloseImage"
+      )
+      .setOrigin(0)
+      .setDisplaySize(
+        (10 / Number(this.game.config.width)) * Number(this.game.config.width),
+        (10 / Number(this.game.config.height)) * Number(this.game.config.height)
+      );
+
+    const guideTitle = this.add.text(
+      (52 / Number(this.game.config.width)) * Number(this.game.config.width),
+      (305 / Number(this.game.config.height)) * Number(this.game.config.height),
+      "Information",
+      {
+        fontSize:
+          (12 / Number(this.game.config.width)) *
+          Number(this.game.config.width),
+      }
+    );
+
+    this.add
+      .image(
+        (170 / Number(this.game.config.width)) * Number(this.game.config.width),
+        (374 / Number(this.game.config.height)) *
+          Number(this.game.config.height),
+        "GuideImage"
+      )
+      .setOrigin(0)
+      .setDisplaySize(
+        (50 / Number(this.game.config.width)) * Number(this.game.config.width),
+        (50 / Number(this.game.config.height)) * Number(this.game.config.height)
+      );
+
+    const gameGuideText = this.add.text(
+      (144 / Number(this.game.config.width)) * Number(this.game.config.width),
+      (444 / Number(this.game.config.height)) * Number(this.game.config.height),
+      "Game Guide",
+      {
+        fontSize:
+          (16 / Number(this.game.config.width)) *
+          Number(this.game.config.width),
+      }
+    );
+
+	const guideText = this.add.text(
+		(56 / Number(this.game.config.width)) * Number(this.game.config.width),
+		(484 / Number(this.game.config.height)) * Number(this.game.config.height),
+		"Each play consumes one Candy\nCandy can be earned through linked games",
+		{
+		  align: 'center',
+		  fontSize:
+			(12 / Number(this.game.config.width)) *
+			Number(this.game.config.width),
+		}
+	  );
   }
 
   create() {
