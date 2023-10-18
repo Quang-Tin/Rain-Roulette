@@ -1,6 +1,12 @@
 {
     "section1": {
-        "files": []
+        "files": [
+            {
+                "url": "assets/HamburgerButton.png",
+                "type": "image",
+                "key": "HamburgerButton"
+            }
+        ]
     },
     "meta": {
         "app": "Phaser Editor 2D - Asset Pack Editor",

@@ -1,22 +1,37 @@
 import Phaser from "phaser";
 import preloadAssetPackUrl from "../static/assets/asset-pack.json";
 import MainScene from "./scenes/MainScene";
+import WebFontFile from "./service/web-font-service";
+import LandingScene from "./scenes/LandingScene";
 
 
 class Boot extends Phaser.Scene {
+	isFontLoaded: boolean = false;
 
     constructor() {
         super("Boot");
     }
 
     preload() {
+		const fonts = new WebFontFile(this.load, ()=>{this.isFontLoaded = true});
 
+		this.load.addFile(fonts);
+		
         this.load.pack("pack", preloadAssetPackUrl);
     }
 
+	update() {
+		const loading = setInterval(()=> {
+			if(this.isFontLoaded) {
+				this.scene.start("LandingScene");
+
+				clearInterval(loading);
+			}
+		}, 1000);
+	}
+
     create() {
 
-       this.scene.start("MainScene");
     }
 }
 
@@ -36,7 +51,7 @@ window.addEventListener('load', function () {
 		roundPixels: true,
 		antialiasGL: true,
 		render: { mipmapFilter: 'LINEAR_MIPMAP_LINEAR' },
-		scene: [Boot, MainScene]
+		scene: [Boot, LandingScene ,MainScene]
 	});
 
 	game.scene.start("Boot");

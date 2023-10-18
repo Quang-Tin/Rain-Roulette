@@ -2,9 +2,39 @@
     "section1": {
         "files": [
             {
+                "url": "assets/BackgroundTitle.png",
+                "type": "image",
+                "key": "BackgroundTitle"
+            },
+            {
+                "url": "assets/Banner.png",
+                "type": "image",
+                "key": "Banner"
+            },
+            {
+                "url": "assets/CandyBalaneLanding.png",
+                "type": "image",
+                "key": "CandyBalaneLanding"
+            },
+            {
+                "url": "assets/CloseButton.png",
+                "type": "image",
+                "key": "CloseButton"
+            },
+            {
                 "url": "assets/CloseImage.png",
                 "type": "image",
                 "key": "CloseImage"
+            },
+            {
+                "url": "assets/ConfirmButton.png",
+                "type": "image",
+                "key": "ConfirmButton"
+            },
+            {
+                "url": "assets/ErrorImage.png",
+                "type": "image",
+                "key": "ErrorImage"
             },
             {
                 "url": "assets/Frame.png",
@@ -17,9 +47,29 @@
                 "key": "GuideImage"
             },
             {
+                "url": "assets/HamburgerButton.png",
+                "type": "image",
+                "key": "HamburgerButton"
+            },
+            {
                 "url": "assets/info.png",
                 "type": "image",
                 "key": "info"
+            },
+            {
+                "url": "assets/IronRarity.png",
+                "type": "image",
+                "key": "IronRarity"
+            },
+            {
+                "url": "assets/LandingLogo.png",
+                "type": "image",
+                "key": "LandingLogo"
+            },
+            {
+                "url": "assets/LetterBox.png",
+                "type": "image",
+                "key": "LetterBox"
             },
             {
                 "url": "assets/logo.png",
@@ -32,6 +82,16 @@
                 "key": "Machine"
             },
             {
+                "url": "assets/MiniGame.png",
+                "type": "image",
+                "key": "MiniGame"
+            },
+            {
+                "url": "assets/NFTCandyBalaneLanding.png",
+                "type": "image",
+                "key": "NFTCandyBalaneLanding"
+            },
+            {
                 "url": "assets/Pin.png",
                 "type": "image",
                 "key": "Pin"
@@ -42,9 +102,24 @@
                 "key": "PlayButton"
             },
             {
+                "url": "assets/RankTable.png",
+                "type": "image",
+                "key": "RankTable"
+            },
+            {
+                "url": "assets/SeasonBanner.png",
+                "type": "image",
+                "key": "SeasonBanner"
+            },
+            {
                 "url": "assets/SeasonInfo.png",
                 "type": "image",
                 "key": "SeasonInfo"
+            },
+            {
+                "url": "assets/SeasonName.png",
+                "type": "image",
+                "key": "SeasonName"
             },
             {
                 "url": "assets/Wheel.png",
