@@ -1,136 +1,158 @@
 import Phaser from "phaser";
+import ComponentUtil from "../utils/ComponentUtil";
+import { ComponentType, ShapeType } from "../utils/enum/Enum";
+import AnimationUtil from "../utils/AnimationUtil";
+import ScreenUtil from "../utils/ScreenUtil";
 
 export default class MainScene extends Phaser.Scene {
+  rarityList: Array<Object> = [
+    {
+      rarityName: "Iron",
+      degrees: 0,
+    },
+    {
+      rarityName: "Rare",
+      degrees: -60,
+    },
+    {
+      rarityName: "Epic",
+      degrees: -120,
+    },
+    {
+      rarityName: "Silver",
+      degrees: 180,
+    },
+    {
+      rarityName: "Bronze",
+      degrees: 120,
+    },
+    {
+      rarityName: "Unique",
+      degrees: 60,
+    },
+  ];
+
   constructor() {
     super("MainScene");
   }
 
+  preload() {
+    this.cameras.main.setBackgroundColor("#2C2937");
+  }
+
   editorCreate(): void {
-	document.getElementsByTagName('body')[0].style.backgroundColor = "#2C2937";
-
-    const logo = this.add
-      .image(
-        Number(this.game.config.width) / 2 - 89 / 2,
-        (21 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "logo"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (89 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (58 / Number(this.game.config.height)) * Number(this.game.config.height)
-      );
-    logo.setY(logo.displayHeight / 2);
-
-    const frame = this.add
-      .image(
-        Number(this.game.config.width) / 2 - 350 / 2,
-        (211 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "Frame"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (350 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (565 / Number(this.game.config.height)) *
-          Number(this.game.config.height)
-      );
-
-    const machine = this.add
-      .image(
-        Number(this.game.config.width) / 2 - 313 / 2,
-        (291 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "Machine"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (313 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (395 / Number(this.game.config.height)) *
-          Number(this.game.config.height)
-      );
-
-    const playButton = this.add
-      .image(
-        Number(this.game.config.width) / 2 - 186 / 2,
-        (694 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "PlayButton"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (186 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (48 / Number(this.game.config.height)) * Number(this.game.config.height)
-      );
-
-    const wheel = this.add
-      .image(
-        Number(this.game.config.width) / 2 - 256 / 2,
-        (320 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "Wheel"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (256 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (235 / Number(this.game.config.height)) *
-          Number(this.game.config.height)
-      );
-
-    const pin = this.add
-      .image(
-        Number(this.game.config.width) / 2 - 61 / 2,
-        (289 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "Pin"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (61 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (51 / Number(this.game.config.height)) * Number(this.game.config.height)
-      );
-
-    const info = this.add
-      .image(
-        (328 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (227 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "info"
-      )
-      .setInteractive()
-      .setOrigin(0)
-      .setDisplaySize(
-        (22 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (22 / Number(this.game.config.height)) * Number(this.game.config.height)
-      );
-
-    const seasonInfo = this.add
-      .image(
-        Number(this.game.config.width) / 2 - 309 / 2,
-        (103 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "SeasonInfo"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (309 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (68 / Number(this.game.config.height)) * Number(this.game.config.height)
-      );
-
-    const candyBlance = this.add.text(
-      (272 / Number(this.game.config.width)) * Number(this.game.config.width),
-      (243 / Number(this.game.config.height)) * Number(this.game.config.height),
-      "0",
-      {
-        fontSize:
-          (18 / Number(this.game.config.width)) *
-          Number(this.game.config.width),
-      }
+    const logo = ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "logo",
+      "",
+      151,
+      21,
+      89,
+      58
+    );
+    const frame = ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "Frame",
+      "",
+      20,
+      211,
+      350,
+      565
     );
 
-    info.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-      this.showGuideDialog();
-    });
+    const machine = ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "Machine",
+      "",
+      39,
+      291,
+      313,
+      395
+    );
+
+    const wheel = ComponentUtil.getInstance()
+      .drawComponent(
+        this,
+        ComponentType.Image,
+        "Wheel",
+        "",
+        66 + 256 / 2,
+        320 + 235 / 2,
+        256,
+        235
+      )
+      ?.setOrigin(0.5);
+
+    const playButton = ComponentUtil.getInstance()
+      .drawComponent(
+        this,
+        ComponentType.Image,
+        "PlayButton",
+        "",
+        103,
+        694,
+        186,
+        48
+      )
+      ?.setInteractive()
+      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        let rarity: any = this.rarityList[Phaser.Math.Between(0, 5)];
+
+        AnimationUtil.getInstance().spinAnimation(
+          this,
+          wheel,
+          () => {
+            this.showRewardDialog();
+          },
+          rarity.degrees
+        );
+      });
+
+    const pin = ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "Pin",
+      "",
+      168,
+      292,
+      61,
+      51
+    );
+
+    const info = ComponentUtil.getInstance()
+      .drawComponent(this, ComponentType.Image, "info", "", 328, 227, 22, 22)
+      ?.setInteractive()
+      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        this.showGuideDialog();
+      });
+
+    const seasonInfo = ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "SeasonInfo",
+      "",
+      41,
+      103,
+      309,
+      68
+    );
+
+    const candyBlance = ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Text,
+      "",
+      "0",
+      272,
+      242,
+      0,
+      0,
+      18,
+      "600",
+      "#ACB1B5"
+    );
 
     this.events.emit("scene-awake");
   }
@@ -350,89 +372,104 @@ export default class MainScene extends Phaser.Scene {
   showRewardDialog() {
     const rewardDialog = this.make.group({});
 
-    const background = this.add
-      .rectangle(0, 0)
+    const background = (
+      ComponentUtil.getInstance().drawShape(
+        this,
+        ShapeType.Rectangle,
+        0,
+        0
+      ) as Phaser.GameObjects.Rectangle
+    )
       .setFillStyle(0x000000, 0.5)
       .setOrigin(0)
-      .setSize(Number(this.game.config.width), Number(this.game.config.height));
+      .setSize(
+        ScreenUtil.getInstance().WIDTH_SCREEN,
+        ScreenUtil.getInstance().HEIGHT_SCREEN
+      );
 
-    const dialog = this.add
-      .graphics()
+    const dialog = (
+      ComponentUtil.getInstance().drawShape(
+        this,
+        ShapeType.Graphics,
+        0,
+        0
+      ) as Phaser.GameObjects.Graphics
+    )
       .fillStyle(0x2c2937, 1)
       .fillRoundedRect(
-        (32 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (228 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        (325 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (388 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
+        ScreenUtil.getInstance().getDimensitionHorizontal(32),
+        ScreenUtil.getInstance().getDimensitionVertical(228),
+        ScreenUtil.getInstance().getDimensitionHorizontal(325),
+        ScreenUtil.getInstance().getDimensitionVertical(388),
         10
       );
 
-    const confirmButton = this.add
-      .image(
-        Number(this.game.config.width) / 2 - 325 / 2,
-        (565 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "ConfirmButton"
+    const confirmButton: any = ComponentUtil.getInstance()
+      .drawComponent(
+        this,
+        ComponentType.Image,
+        "ConfirmButton",
+        "",
+        32,
+        565,
+        325,
+        51
       )
-      .setInteractive()
-      .setOrigin(0)
-      .setDisplaySize(
-        (325 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (51 / Number(this.game.config.height)) * Number(this.game.config.height)
-      );
+      ?.setInteractive()
+      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        rewardDialog.setVisible(false);
+      });
 
-    const congratsText = this.add.text(
-      (48 / Number(this.game.config.width)) * Number(this.game.config.width),
-      (491 / Number(this.game.config.height)) * Number(this.game.config.height),
+    const congratsText: any = ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Text,
+      "",
       "Congrats On Earning A Unique NFT!",
-      {
-        fontFamily: "Poppins",
-        fontStyle: "600",
-		fontSize:
-		(16 / Number(this.game.config.width)) *
-		Number(this.game.config.width),
-      }
+      48,
+      491,
+      0,
+      0,
+      16,
+      "600"
     );
 
-    const checkOnPageText = this.add.text(
-      (115 / Number(this.game.config.width)) * Number(this.game.config.width),
-      (519 / Number(this.game.config.height)) * Number(this.game.config.height),
+    const checkOnPageText: any = ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Text,
+      "",
       "Check It On The NFT Page.",
-      {
-		color:"#8E8E93",
-        fontFamily: "Poppins",
-        fontStyle: "500",
-        fontSize:
-          (12 / Number(this.game.config.width)) *
-          Number(this.game.config.width),
-      }
+      115,
+      519,
+      0,
+      0,
+      12,
+      "500",
+      "#8E8E93"
     );
 
-	const rarityImage = this.add.image(
-		(112 / Number(this.game.config.width)) * Number(this.game.config.width),
-		(252 / Number(this.game.config.height)) * Number(this.game.config.height),
-		"IronRarity"
-	  )
-	.setOrigin(0)
-	.setDisplaySize(
-		(165 / Number(this.game.config.width)) * Number(this.game.config.width),
-		(213 / Number(this.game.config.height)) * Number(this.game.config.height)
-	);
+    const rarityImage: any = ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "IronRarity",
+      "",
+      112,
+      252,
+      165,
+      213
+    );
 
-	rewardDialog.addMultiple([
-		background,
-		dialog,
-		confirmButton,
-		congratsText,
-		checkOnPageText,
-		rarityImage
-	]);
+    rewardDialog.addMultiple([
+      background,
+      dialog,
+      confirmButton,
+      congratsText,
+      checkOnPageText,
+      rarityImage,
+    ]);
 
-	confirmButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, ()=>{
-		rewardDialog.setVisible(false);
-	})
+    confirmButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+      rewardDialog.setVisible(false);
+    });
   }
 
   create() {

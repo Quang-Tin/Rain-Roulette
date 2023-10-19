@@ -20,31 +20,26 @@ class Boot extends Phaser.Scene {
         this.load.pack("pack", preloadAssetPackUrl);
     }
 
-	update() {
+    create() {
 		const loading = setInterval(()=> {
 			if(this.isFontLoaded) {
-				this.scene.start("LandingScene");
-
 				clearInterval(loading);
+
+				this.scene.start("LandingScene");
 			}
 		}, 1000);
-	}
-
-    create() {
-
     }
 }
 
 window.addEventListener('load', function () {
-	
 	const game = new Phaser.Game({
 		type: Phaser.CANVAS,
 		width: 390,
 		height: 844,
-		backgroundColor: "#2C2937",
+		backgroundColor: "#000000",
 		scale: {
 			mode: Phaser.Scale.ScaleModes.FIT,
-			autoCenter: Phaser.Scale.Center.CENTER_BOTH
+			autoCenter: Phaser.Scale.Center.CENTER_BOTH,
 		},
 		pixelArt: false,
 		antialias: true,
