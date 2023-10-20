@@ -111,8 +111,9 @@ export default class MainScene extends Phaser.Scene {
         AnimationUtil.getInstance().spinAnimation(
           this,
           wheel,
-          () => {
+          (tweens: Phaser.Tweens.Tween) => {
             this.showRewardDialog(rarity);
+            tweens.destroy();
           },
           rarity.degrees
         );

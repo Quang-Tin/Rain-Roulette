@@ -41,11 +41,7 @@ window.addEventListener('load', function () {
 			mode: Phaser.Scale.ScaleModes.FIT,
 			autoCenter: Phaser.Scale.Center.CENTER_BOTH,
 		},
-		pixelArt: false,
-		antialias: true,
-		roundPixels: true,
-		antialiasGL: true,
-		render: { mipmapFilter: 'LINEAR_MIPMAP_LINEAR' },
+		
 		scene: [Boot, LandingScene ,MainScene]
 	});
 

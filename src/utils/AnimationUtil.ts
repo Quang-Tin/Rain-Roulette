@@ -12,7 +12,7 @@ export default class AnimationUtil {
   spinAnimation(
     scene: Phaser.Scene,
     target: any,
-    onCompleteHandle: () => void,
+    onCompleteHandle: (tween: Phaser.Tweens.Tween) => void,
     rewardDegrees: any
   ) {
     const rounds = 10;
