@@ -12,6 +12,11 @@
                 "key": "Banner"
             },
             {
+                "url": "assets/Bronze.png",
+                "type": "image",
+                "key": "Bronze"
+            },
+            {
                 "url": "assets/CandyBalaneLanding.png",
                 "type": "image",
                 "key": "CandyBalaneLanding"
@@ -30,6 +35,11 @@
                 "url": "assets/ConfirmButton.png",
                 "type": "image",
                 "key": "ConfirmButton"
+            },
+            {
+                "url": "assets/Epic.png",
+                "type": "image",
+                "key": "Epic"
             },
             {
                 "url": "assets/ErrorImage.png",
@@ -59,7 +69,7 @@
             {
                 "url": "assets/IronRarity.png",
                 "type": "image",
-                "key": "IronRarity"
+                "key": "Iron"
             },
             {
                 "url": "assets/LandingLogo.png",
@@ -107,6 +117,11 @@
                 "key": "RankTable"
             },
             {
+                "url": "assets/Rare.png",
+                "type": "image",
+                "key": "Rare"
+            },
+            {
                 "url": "assets/SeasonBanner.png",
                 "type": "image",
                 "key": "SeasonBanner"
@@ -120,6 +135,16 @@
                 "url": "assets/SeasonName.png",
                 "type": "image",
                 "key": "SeasonName"
+            },
+            {
+                "url": "assets/Silver.png",
+                "type": "image",
+                "key": "Silver"
+            },
+            {
+                "url": "assets/Unique.png",
+                "type": "image",
+                "key": "Unique"
             },
             {
                 "url": "assets/Wheel.png",

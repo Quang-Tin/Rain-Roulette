@@ -1,223 +1,174 @@
+import { ComponentType } from "../utils/enum/Enum";
+import ComponentUtil from "../utils/ComponentUtil";
+
 export default class MainScene extends Phaser.Scene {
   constructor() {
     super("LandingScene");
   }
 
   editorCreate(): void {
-    document.getElementsByTagName('body')[0].style.backgroundColor = "#1C1C1E";
     this.cameras.main.setBackgroundColor("#1C1C1E");
 
-    this.add
-      .image(0, 0, "BackgroundTitle")
-      .setOrigin(0)
-      .setDisplaySize(
-        (390 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (107 / Number(this.game.config.height)) *
-          Number(this.game.config.height)
-      );
-
-    this.add
-      .image(
-        (20 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (51 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "LandingLogo"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (64 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (51 / Number(this.game.config.height)) * Number(this.game.config.height)
-      );
-
-    this.add
-      .image(
-        (293 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (62 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "LetterBox"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (32 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (28 / Number(this.game.config.height)) * Number(this.game.config.height)
-      );
-
-    this.add
-      .image(
-        (345 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (62 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "HamburgerButton"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (25 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (23 / Number(this.game.config.height)) * Number(this.game.config.height)
-      );
-
-    this.add
-      .image(
-        (25 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (132 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "CandyBalaneLanding"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (155 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (36 / Number(this.game.config.height)) * Number(this.game.config.height)
-      );
-
-    this.add
-      .image(
-        (25 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (132 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "CandyBalaneLanding"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (155 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (36 / Number(this.game.config.height)) * Number(this.game.config.height)
-      );
-
-    this.add
-      .image(
-        (210 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (129 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "NFTCandyBalaneLanding"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (155 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (40 / Number(this.game.config.height)) * Number(this.game.config.height)
-      );
-
-    this.add
-      .image(
-        (0 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (233 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "RankTable"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (390 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (326 / Number(this.game.config.height)) *
-          Number(this.game.config.height)
-      );
-
-    this.add
-      .image(
-        (20 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (193 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "Banner"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (350 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (80 / Number(this.game.config.height)) * Number(this.game.config.height)
-      );
-
-    this.add
-      .image(
-        (20 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (579 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "SeasonBanner"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (350 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (70 / Number(this.game.config.height)) * Number(this.game.config.height)
-      );
-
-    this.add
-      .image(
-        (253 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (667 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "SeasonName"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (137 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (41 / Number(this.game.config.height)) * Number(this.game.config.height)
-      );
-
-    this.add
-      .image(
-        (253 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (667 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "SeasonName"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (137 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (41 / Number(this.game.config.height)) * Number(this.game.config.height)
-      );
-
-    this.add.text(
-      (20 / Number(this.game.config.width)) * Number(this.game.config.width),
-      (679 / Number(this.game.config.height)) * Number(this.game.config.height),
-      "Mini Game",
-      {
-        fontFamily: "Poppins",
-        fontStyle: "800",
-        fontSize:
-          (18 / Number(this.game.config.width)) *
-          Number(this.game.config.width),
-      }
+    ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "BackgroundTitle",
+      "",
+      Number(this.game.config.width) / 2 - (390 / 2),
+      0,
+      390,
+      107
     );
 
-    this.add
-      .image(
-        (20 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (726 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "MiniGame"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (103 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (103 / Number(this.game.config.height)) *
-          Number(this.game.config.height)
-      );
+    ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "LandingLogo",
+      "",
+      20,
+      51,
+      64,
+      51
+    );
 
-    this.add
-      .image(
-        (144 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (726 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "MiniGame"
+    ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "LetterBox",
+      "",
+      293,
+      62,
+      32,
+      28
+    );
+
+    ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "HamburgerButton",
+      "",
+      345,
+      62,
+      25,
+      23
+    );
+
+    ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "CandyBalaneLanding",
+      "",
+      25,
+      132,
+      155,
+      36
+    );
+
+    ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "NFTCandyBalaneLanding",
+      "",
+      210,
+      129,
+      155,
+      36
+    );
+
+    ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "RankTable",
+      "",
+      0,
+      233,
+      390,
+      326
+    );
+
+    ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "Banner",
+      "",
+      20,
+      193,
+      350,
+      80
+    );
+
+    ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "SeasonBanner",
+      "",
+      20,
+      579,
+      350,
+      70
+    );
+
+    ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "SeasonName",
+      "",
+      253,
+      667,
+      137,
+      41
+    );
+
+    ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Text,
+      "",
+      "Mini Game",
+      20,
+      679,
+      0,
+      0,
+      18,
+      "800"
+    );
+
+    ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "MiniGame",
+      "",
+      20,
+      726,
+      103,
+      103
+    );
+
+    ComponentUtil.getInstance()
+      .drawComponent(
+        this,
+        ComponentType.Image,
+        "MiniGame",
+        "",
+        144,
+        726,
+        103,
+        103
       )
-      .setInteractive()
+      ?.setInteractive()
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
         this.scene.start("MainScene");
-      })
-      .setOrigin(0)
-      .setDisplaySize(
-        (103 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (103 / Number(this.game.config.height)) *
-          Number(this.game.config.height)
-      );
+      });
 
-    this.add
-      .image(
-        (267 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (726 / Number(this.game.config.height)) *
-          Number(this.game.config.height),
-        "MiniGame"
-      )
-      .setOrigin(0)
-      .setDisplaySize(
-        (103 / Number(this.game.config.width)) * Number(this.game.config.width),
-        (103 / Number(this.game.config.height)) *
-          Number(this.game.config.height)
-      );
+    ComponentUtil.getInstance().drawComponent(
+      this,
+      ComponentType.Image,
+      "MiniGame",
+      "",
+      267,
+      726,
+      103,
+      103
+    );
   }
 
   create() {

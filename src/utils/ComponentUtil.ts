@@ -35,7 +35,7 @@ export default class ComponentUtil {
           )
           .setOrigin(0)
           .setDisplaySize(
-            ScreenUtil.getInstance().getDimensitionHorizontal(width),
+            ScreenUtil.getInstance().getDimensitionVertical(width),
             ScreenUtil.getInstance().getDimensitionVertical(height)
           );
 

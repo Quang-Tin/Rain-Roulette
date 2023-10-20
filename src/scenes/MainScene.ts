@@ -7,26 +7,32 @@ import ScreenUtil from "../utils/ScreenUtil";
 export default class MainScene extends Phaser.Scene {
   rarityList: Array<Object> = [
     {
+      image: 'Iron',
       rarityName: "Iron",
       degrees: 0,
     },
     {
+      image: 'Rare',
       rarityName: "Rare",
       degrees: -60,
     },
     {
+      image: 'Epic',
       rarityName: "Epic",
       degrees: -120,
     },
     {
+      image: 'Silver',
       rarityName: "Silver",
       degrees: 180,
     },
     {
+      image: 'Bronze',
       rarityName: "Bronze",
       degrees: 120,
     },
     {
+      image: 'Unique',
       rarityName: "Unique",
       degrees: 60,
     },
@@ -51,6 +57,7 @@ export default class MainScene extends Phaser.Scene {
       89,
       58
     );
+
     const frame = ComponentUtil.getInstance().drawComponent(
       this,
       ComponentType.Image,
@@ -105,7 +112,7 @@ export default class MainScene extends Phaser.Scene {
           this,
           wheel,
           () => {
-            this.showRewardDialog();
+            this.showRewardDialog(rarity);
           },
           rarity.degrees
         );
@@ -127,7 +134,7 @@ export default class MainScene extends Phaser.Scene {
       ?.setInteractive()
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
         this.showGuideDialog();
-      });
+      })
 
     const seasonInfo = ComponentUtil.getInstance().drawComponent(
       this,
@@ -138,7 +145,7 @@ export default class MainScene extends Phaser.Scene {
       103,
       309,
       68
-    );
+    )
 
     const candyBlance = ComponentUtil.getInstance().drawComponent(
       this,
@@ -152,7 +159,7 @@ export default class MainScene extends Phaser.Scene {
       18,
       "600",
       "#ACB1B5"
-    );
+    )
 
     this.events.emit("scene-awake");
   }
@@ -369,7 +376,7 @@ export default class MainScene extends Phaser.Scene {
     });
   }
 
-  showRewardDialog() {
+  showRewardDialog(rarityObject: any) {
     const rewardDialog = this.make.group({});
 
     const background = (
@@ -420,18 +427,21 @@ export default class MainScene extends Phaser.Scene {
         rewardDialog.setVisible(false);
       });
 
-    const congratsText: any = ComponentUtil.getInstance().drawComponent(
+    const congratsText: any = (ComponentUtil.getInstance().drawComponent(
       this,
       ComponentType.Text,
       "",
-      "Congrats On Earning A Unique NFT!",
-      48,
+      `Congrats On Earning A ${rarityObject.rarityName} NFT!`,
+      0,
       491,
       0,
       0,
       16,
       "600"
-    );
+    ) as Phaser.GameObjects.Text).setAlign('center');
+    
+    congratsText.setX(ScreenUtil.getInstance().WIDTH_SCREEN / 2 - congratsText.displayWidth / 2,);
+    
 
     const checkOnPageText: any = ComponentUtil.getInstance().drawComponent(
       this,
@@ -450,7 +460,7 @@ export default class MainScene extends Phaser.Scene {
     const rarityImage: any = ComponentUtil.getInstance().drawComponent(
       this,
       ComponentType.Image,
-      "IronRarity",
+      rarityObject.image,
       "",
       112,
       252,
@@ -468,7 +478,7 @@ export default class MainScene extends Phaser.Scene {
     ]);
 
     confirmButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-      rewardDialog.setVisible(false);
+      rewardDialog.destroy(true);
     });
   }
 
