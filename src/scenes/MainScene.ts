@@ -38,7 +38,9 @@ export default class MainScene extends Phaser.Scene {
     },
   ];
 
-  constructor() {
+  enablePin: boolean = true;
+
+  constructor() { 
     super("MainScene");
   }
 
@@ -93,31 +95,7 @@ export default class MainScene extends Phaser.Scene {
       )
       ?.setOrigin(0.5);
 
-    const playButton = ComponentUtil.getInstance()
-      .drawComponent(
-        this,
-        ComponentType.Image,
-        "PlayButton",
-        "",
-        103,
-        694,
-        186,
-        48
-      )
-      ?.setInteractive()
-      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-        let rarity: any = this.rarityList[Phaser.Math.Between(0, 5)];
-
-        AnimationUtil.getInstance().spinAnimation(
-          this,
-          wheel,
-          (tweens: Phaser.Tweens.Tween) => {
-            this.showRewardDialog(rarity);
-            tweens.destroy();
-          },
-          rarity.degrees
-        );
-      });
+    
 
     const pin = ComponentUtil.getInstance().drawComponent(
       this,
@@ -130,12 +108,56 @@ export default class MainScene extends Phaser.Scene {
       51
     );
 
-    const info = ComponentUtil.getInstance()
+    const info: Phaser.GameObjects.Image | any = ComponentUtil.getInstance()
       .drawComponent(this, ComponentType.Image, "info", "", 328, 227, 22, 22)
       ?.setInteractive()
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
         this.showGuideDialog();
       })
+
+      const playButton: Phaser.GameObjects.Image | any = ComponentUtil.getInstance()
+      .drawComponent(
+        this,
+        ComponentType.Image,
+        "PlayButton",
+        "",
+        103,
+        694,
+        186,
+        48
+      )
+      ?.setInteractive()
+      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, (context: Phaser.GameObjects.Image) => {
+        let rarity: any = this.rarityList[Phaser.Math.Between(0, 5)];
+        
+        if(this.enablePin) {
+          playButton.setTexture("DisableButton");
+          playButton.disableInteractive();
+
+          info.setTexture("InfoDisable");
+          info.disableInteractive();
+
+          AnimationUtil.getInstance().spinAnimation(
+            this,
+            wheel,
+            (tweens: Phaser.Tweens.Tween) => {
+              playButton.setTexture("PlayButton");
+              playButton.setInteractive();
+
+              info.setTexture("info");
+              info.setInteractive();
+
+              this.enablePin = true;
+
+              this.showRewardDialog(rarity);
+              tweens.destroy();
+            },
+            rarity.degrees
+          );  
+
+          this.enablePin = false;    
+        }        
+      });
 
     const seasonInfo = ComponentUtil.getInstance().drawComponent(
       this,

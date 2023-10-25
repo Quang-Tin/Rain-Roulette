@@ -13,6 +13,8 @@ class Boot extends Phaser.Scene {
     }
 
     preload() {
+		// this.scale.displaySize.setAspectRatio(1024/1366);
+		// this.scale.refresh();
 		const fonts = new WebFontFile(this.load, ()=>{this.isFontLoaded = true});
 
 		this.load.addFile(fonts);
